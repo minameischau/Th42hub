@@ -1,0 +1,8 @@
+.env
+wp-content/plugins/*
+wp-content/debug.log
+.idea
+uploads
+/vendor/
+node_modules
+parse.php
