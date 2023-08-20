@@ -25,7 +25,7 @@ if (!defined('FS_METHOD')) define('FS_METHOD', 'direct');
  * For AWS LB
  */
 if (isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && strpos($_SERVER['HTTP_X_FORWARDED_PROTO'], 'https') !== false) {
-	$_SERVER['HTTPS'] = 'on';
+    $_SERVER['HTTPS'] = 'on';
 }
 
 require_once __DIR__ . '/env.php';
@@ -64,6 +64,18 @@ define('NONCE_SALT',       '1:A1M3e?3y0|f^wBWaCR4LW-yDFXRv@C@sZD(*t`B,lphD,y~aFK
 
 /**#@-*/
 
+/****************************************************************************/
+/*                           Auto activate plugin                           */
+/****************************************************************************/
+if (!function_exists('is_plugin_active')) {
+    require_once ABSPATH . 'wp-admin/includes/plugin.php';
+}
+
+$plugin = 'th42-hub/th42-hub.php';
+
+if (!is_plugin_active($plugin)) {
+    activate_plugin($plugin);
+}
 
 /**
  * For developers: WordPress debugging mode.
@@ -90,7 +102,7 @@ define('SCRIPT_DEBUG', env('SCRIPT_DEBUG', false));
 
 /** Absolute path to the WordPress directory. */
 if (!defined('ABSPATH')) {
-	define('ABSPATH', __DIR__ . '/');
+    define('ABSPATH', __DIR__ . '/');
 }
 
 /** Sets up WordPress vars and included files. */
