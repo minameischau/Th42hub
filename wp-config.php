@@ -64,19 +64,6 @@ define('NONCE_SALT',       '1:A1M3e?3y0|f^wBWaCR4LW-yDFXRv@C@sZD(*t`B,lphD,y~aFK
 
 /**#@-*/
 
-/****************************************************************************/
-/*                           Auto activate plugin                           */
-/****************************************************************************/
-if (!function_exists('is_plugin_active')) {
-    require_once ABSPATH . 'wp-admin/includes/plugin.php';
-}
-
-$plugin = 'th42-hub/th42-hub.php';
-
-if (!is_plugin_active($plugin)) {
-    activate_plugin($plugin);
-}
-
 /**
  * For developers: WordPress debugging mode.
  *
