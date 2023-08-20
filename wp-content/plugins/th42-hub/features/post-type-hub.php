@@ -9,6 +9,19 @@ class Post_Type_Hub
 
         // Change title
         add_filter('enter_title_here', [$this, 'wpb_change_title_text']);
+
+        // Add bootstrap to admin page 
+        add_action('admin_enqueue_scripts', [$this, 'enqueue_bootstrap_admin']);
+    }
+
+    function enqueue_bootstrap_admin()
+    {
+        global $post_type;
+
+        if ($post_type === 'hubs') {
+            wp_enqueue_style('bootstrap-css', 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css');
+            wp_enqueue_script('bootstrap-js', 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js', array('jquery'), '', true);
+        }
     }
 
     function wpb_change_title_text($title)
@@ -51,7 +64,7 @@ class Post_Type_Hub
             'supports'           => array('title', 'editor', 'thumbnail')
         );
 
-        register_post_type('hub', $args);
+        register_post_type('hubs', $args);
     }
 }
 
