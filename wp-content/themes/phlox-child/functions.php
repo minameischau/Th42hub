@@ -25,3 +25,8 @@ if (!defined('PHLOX_CHILD_DIR')) {
 
 // Add google font
 require_once PHLOX_CHILD_DIR . '/classes/class-add-google-font.php';
+new Add_Google_Fonts();
+
+// Add bootstrap
+require_once PHLOX_CHILD_DIR . '/classes/class-add-bootstrap.php';
+new Add_Bootstrap();

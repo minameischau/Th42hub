@@ -18,7 +18,7 @@ class Post_Type_Hub
     {
         global $post_type;
 
-        if ($post_type === 'hubs') {
+        if ($post_type === 'hub') {
             wp_enqueue_style('bootstrap-css', 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css');
             wp_enqueue_script('bootstrap-js', 'https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js', array('jquery'), '', true);
         }
@@ -64,7 +64,7 @@ class Post_Type_Hub
             'supports'           => array('title', 'editor', 'thumbnail')
         );
 
-        register_post_type('hubs', $args);
+        register_post_type('hub', $args);
     }
 }
 
