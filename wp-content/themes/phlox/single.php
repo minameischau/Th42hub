@@ -16,7 +16,6 @@ get_header(); ?>
 
                 <div id="primary" class="aux-primary" >
                     <div class="content" role="main"  >
-
                         <?php
                         if ( ! ( function_exists( 'auxin_theme_do_location' ) && auxin_theme_do_location( 'single' ) ) && ! ( function_exists( 'elementor_theme_do_location' ) && elementor_theme_do_location( 'single' ) ) ) {
                             $is_pass_protected = post_password_required();
