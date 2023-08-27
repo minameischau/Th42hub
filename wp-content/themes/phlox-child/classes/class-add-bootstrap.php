@@ -4,8 +4,8 @@ class Add_Bootstrap
 {
     public function __construct()
     {
-        add_action('wp_enqueue_scripts', 'enqueue_bootstrap_css');
-        add_action('wp_enqueue_scripts', 'enqueue_bootstrap_js');
+        add_action('wp_enqueue_scripts', [$this, 'enqueue_bootstrap_css']);
+        add_action('wp_enqueue_scripts', [$this, 'enqueue_bootstrap_js']);
     }
 
     function enqueue_bootstrap_css()
