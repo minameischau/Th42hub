@@ -13,26 +13,6 @@ class Post_Type_Hub
         // Add bootstrap to admin page 
         add_action('admin_enqueue_scripts', [$this, 'enqueue_bootstrap_admin']);
 
-        add_filter('post_type_link', [$this, 'custom_permalink_structure'], 10, 2);
-
-        add_action('init', [$this, 'rewrite_rules_for_custom_post_type']);
-    }
-
-    function custom_permalink_structure($permalink, $post)
-    {
-        if ($post->post_type === 'hub') {
-            $permalink = home_url("/" . $post->post_type . "/" . $post->post_name . "/");
-        }
-        return $permalink;
-    }
-
-    function rewrite_rules_for_custom_post_type()
-    {
-        add_rewrite_rule(
-            '^hub/([^/]+)/?$',
-            'index.php?post_type=hub&postname=$matches[1]',
-            'top'
-        );
     }
 
     function enqueue_bootstrap_admin()
@@ -76,13 +56,14 @@ class Post_Type_Hub
             'show_ui'            => true,
             'show_in_menu'       => true,
             'query_var'          => true,
-            'rewrite'            => array('slug' => 'service'),
+            'rewrite'            => array('slug' => 'hubs'),
             'capability_type'    => 'post',
             'has_archive'        => true,
             'hierarchical'       => false,
             'menu_position'      => null,
             'menu_icon'          => 'dashicons-buddicons-buddypress-logo',
-            'supports'           => array('title', 'editor', 'thumbnail')
+            'supports'           => array('title', 'editor', 'thumbnail'),
+            'show_in_rest'       => true
         );
 
         register_post_type('hub', $args);
