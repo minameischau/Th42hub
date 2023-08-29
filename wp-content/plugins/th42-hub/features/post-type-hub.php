@@ -5,7 +5,7 @@ class Post_Type_Hub
     public function __construct()
     {
         // Register Post type
-        add_action('init', [$this, 'register_post_type_hub']);
+        // add_action('init', [$this, 'register_post_type_hub']);
 
         // Change title
         add_filter('enter_title_here', [$this, 'wpb_change_title_text']);
@@ -40,9 +40,9 @@ class Post_Type_Hub
     {
         $labels = array(
             'name'                  => __('Hub Posts'),
-            'singular_name'         => __('Member'),
+            'singular_name'         => __('Post'),
             'menu_name'             => __('Hub Posts'),
-            'add_new'               => __('Add New Member'),
+            'add_new'               => __('Add New Post'),
             'add_new_item'          => __('New Post'),
             'edit'                  => __('Edit Post'),
             'edit_item'             => __('Edit Post'),
@@ -56,6 +56,7 @@ class Post_Type_Hub
             'public'             => true,
             'publicly_queryable' => true,
             'show_ui'            => true,
+            'show_in_rest'        => true,
             'show_in_menu'       => true,
             'query_var'          => true,
             'rewrite'            => array('slug' => 'hubs'),

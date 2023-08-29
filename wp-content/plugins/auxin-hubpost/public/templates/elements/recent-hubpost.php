@@ -1,5 +1,5 @@
 <?php
-function auxin_recent_portfolio( $args= array() ) {
+function auxin_recent_hubpost( $args= array() ) {
 
     global $post;
 
@@ -17,9 +17,9 @@ function auxin_recent_portfolio( $args= array() ) {
         'exclude_without_media'      => 0,
         'display_like'               => 1,
         'deeplink'                   => 0,
-        'deeplink_slug'              => uniqid('portfolio-'),
+        'deeplink_slug'              => uniqid('hubpost-'),
         'show_filters'               => 1,
-        'filter_by'                  => 'portfolio-filter',
+        'filter_by'                  => 'hubpost-filter',
         'filter_style'               => 'aux-slideup',
         'filter_align'               => 'aux-left',
         'reveal_transition_duration' => '600',
@@ -50,8 +50,8 @@ function auxin_recent_portfolio( $args= array() ) {
         'extra_classes'              => '',
         'extra_column_classes'       => '',
         'custom_el_id'               => '',
-        'template_part_file'         => 'recent-portfolio',
-        'extra_template_path'        =>  AUXPFO_PUB_DIR . '/templates/elements',
+        'template_part_file'         => 'recent-hubpost',
+        'extra_template_path'        =>  AUXHP_PUB_DIR . '/templates/elements',
         'universal_id'               => '',
         'use_ajax'                   => 0,
         'term'                       => '',
@@ -64,8 +64,8 @@ function auxin_recent_portfolio( $args= array() ) {
         'loadmore_label'             => 'text',
         'loadmore_per_page'          => '',
         'term_field'                 => 'slug',
-        'base'                       => 'aux_recent_portfolios_grid',
-        'base_class'                 => 'aux-widget-recent-portfolios',
+        'base'                       => 'aux_recent_hubposts_grid',
+        'base_class'                 => 'aux-widget-recent-hubposts',
         'override_global_query'      => false
     );
 
@@ -73,7 +73,7 @@ function auxin_recent_portfolio( $args= array() ) {
     extract( $args );
 
     $isotope_id      = uniqid();
-    $wrapper_classes = 'aux-portfolio-columns aux-ajax-view aux-isotope-animated ';
+    $wrapper_classes = 'aux-hubpost-columns aux-ajax-view aux-isotope-animated ';
     $is_tiles        = false;
     $is_masonry      = false;
     $is_grid         = false;
@@ -176,12 +176,12 @@ function auxin_recent_portfolio( $args= array() ) {
     $isoxin_attrs .= ' data-reveal-transition-duration="'. esc_attr( $reveal_transition_duration ).'" data-reveal-between-delay="'.esc_attr( $reveal_between_delay ).'"';
     $isoxin_attrs .= ' data-hide-transition-duration="'. esc_attr( $hide_transition_duration ).'" data-hide-between-delay="'.esc_attr( $hide_between_delay ).'"';
 
-    $ajaxAttrs     = ' data-num="'. $num .'" data-order="'. $order .'" data-orderby="'. $order_by .'" data-taxonomy="'. $filter_by .'" data-n="'. wp_create_nonce( 'aux_ajax_filterable_portfolio' ) .'"';
+    $ajaxAttrs     = ' data-num="'. $num .'" data-order="'. $order .'" data-orderby="'. $order_by .'" data-taxonomy="'. $filter_by .'" data-n="'. wp_create_nonce( 'aux_ajax_filterable_hubpost' ) .'"';
     $isoxin_attrs .= $ajaxAttrs;
 
     $wrapper_classes .= $show_lightbox ? ' aux-lightbox-gallery' : '';
 
-    $filter_by = auxin_is_true( $show_filters ) || 'archive' === $called_from || 'taxonomy' === $called_from ? $filter_by : 'portfolio-cat';
+    $filter_by = auxin_is_true( $show_filters ) || 'archive' === $called_from || 'taxonomy' === $called_from ? $filter_by : 'hubpost-cat';
 
     /**
      * if the Request is from ajax , $term variable will be empty
@@ -192,7 +192,7 @@ function auxin_recent_portfolio( $args= array() ) {
 
     if( ! empty( $args['cat'] ) && $args['cat'] != " " && ( ! is_array( $args['cat'] ) || ! in_array( " ", $args['cat'] ) ) ) {
         $cat_args = array(
-            'taxonomy' => 'portfolio-cat',
+            'taxonomy' => 'hubpost-cat',
             'field'    => 'term_id',
             'terms'    => ! is_array( $args['cat'] ) ? explode( ",", $args['cat'] ) : $args['cat']
         );
@@ -235,11 +235,11 @@ function auxin_recent_portfolio( $args= array() ) {
             )
         );
 
-        if ( $args['filter_by'] == 'portfolio-cat' ) {
+        if ( $args['filter_by'] == 'hubpost-cat' ) {
             $tax_args[0]['terms'] = $args['cat'];
-        } elseif ( $args['filter_by'] == 'portfolio-tag' ) {
+        } elseif ( $args['filter_by'] == 'hubpost-tag' ) {
             $tax_args[0]['terms'] = $args['tag'];
-        } elseif ( $args['filter_by'] == 'portfolio-filter' ) {
+        } elseif ( $args['filter_by'] == 'hubpost-filter' ) {
             $tax_args[0]['terms'] = $args['filter'];
         }
     }
@@ -297,7 +297,7 @@ function auxin_recent_portfolio( $args= array() ) {
             if ( $is_tiles ) {
 
                 $tile_pattern_info = auxin_get_tile_pattern( $tile_style_pattern, $post_counter - 1, $column_media_width );
-                $post_vars = auxpfo_get_portfolio_config(
+                $post_vars = auxhp_get_hubpost_config(
                     $post,
                     array(
                         'request_from'    => 'archive',
@@ -317,7 +317,7 @@ function auxin_recent_portfolio( $args= array() ) {
 
             } else  {
 
-                $post_vars = auxpfo_get_portfolio_config(
+                $post_vars = auxhp_get_hubpost_config(
                     $post,
                     array(
                         'request_from'    => 'archive',
@@ -371,7 +371,7 @@ function auxin_recent_portfolio( $args= array() ) {
                 echo sprintf('<div class="aux-iso-item aux-loading %s">', $item_classes );
             }
 
-            include auxin_get_template_file( 'theme-parts/entry/portfolio', $template_file, AUXPFO()->template_path() );
+            include auxin_get_template_file( 'theme-parts/entry/hubpost', $template_file, AUXHP()->template_path() );
 
 
             echo '</div>';
@@ -403,7 +403,7 @@ function auxin_recent_portfolio( $args= array() ) {
             if ( !empty( $entry_background_color ) || !empty( $entry_border_color ) ) {
                 echo sprintf(
                     '<style>
-                    .page .aux-widget-recent-portfolios .entry-main  { %s %s }
+                    .page .aux-widget-recent-hubposts .entry-main  { %s %s }
                     </style>',
                     $entry_background_color,
                     $entry_border_color
