@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Premium Hubpost for Phlox theme
  *
@@ -23,12 +24,12 @@
  */
 
 // If this file is called directly, abort.
-if ( ! defined( 'WPINC' ) ) {
+if (!defined('WPINC')) {
     die('No Naughty Business Please !');
 }
 
 // Abort loading if WordPress is upgrading
-if ( defined( 'WP_INSTALLING' ) && WP_INSTALLING ) {
+if (defined('WP_INSTALLING') && WP_INSTALLING) {
     return;
 }
 
@@ -37,13 +38,14 @@ if ( defined( 'WP_INSTALLING' ) && WP_INSTALLING ) {
  * ===========================================================================*/
 
 // Don't check the requirements if it's frontend or AUXIN_DUBUG set to false
-if( is_admin() ||
-    false === get_transient( 'auxhp_plugin_requirements_check' ) ||
-    ! file_exists( get_template_directory() . '/auxin-content/init/dependency.php' )
-){
+if (
+    is_admin() ||
+    false === get_transient('auxhp_plugin_requirements_check') ||
+    !file_exists(get_template_directory() . '/auxin-content/init/dependency.php')
+) {
 
-    if( ! class_exists( 'Auxin_Plugin_Requirements' ) ){
-        require_once( plugin_dir_path( __FILE__ ) . 'includes/classes/class-auxin-plugin-requirements.php' );
+    if (!class_exists('Auxin_Plugin_Requirements')) {
+        require_once(plugin_dir_path(__FILE__) . 'includes/classes/class-auxin-plugin-requirements.php');
     }
 
     $plugin_requirements = new Auxin_Plugin_Requirements();
@@ -67,7 +69,7 @@ if( is_admin() ||
                 'version'              => '5.1.8', // E.g. 1.0.0. If set, the active theme must be this version or higher.
                 'is_callable'          => '', // If set, this callable will be be checked for availability to determine if a theme is active.
                 'theme_requires_const' => 'AUXHP_REQUIRED_VERSION',
-                'file_required'        => array( get_template_directory() . '/auxin-content/init/dependency.php', get_template_directory() . '/auxin-content/init/constant.php' )
+                'file_required'        => array(get_template_directory() . '/auxin-content/init/dependency.php', get_template_directory() . '/auxin-content/init/constant.php')
             ),
             array(
                 'name'                 => __('Phlox', 'auxin-hubpost'), // The theme name.
@@ -76,14 +78,14 @@ if( is_admin() ||
                 'version'              => '2.3.10', // E.g. 1.0.0. If set, the active theme must be this version or higher.
                 'is_callable'          => '', // If set, this callable will be be checked for availability to determine if a theme is active.
                 'theme_requires_const' => 'AUXHP_REQUIRED_VERSION',
-                'file_required'        => array( get_template_directory() . '/auxin-content/init/dependency.php', get_template_directory() . '/auxin-content/init/constant.php' )
+                'file_required'        => array(get_template_directory() . '/auxin-content/init/dependency.php', get_template_directory() . '/auxin-content/init/constant.php')
             )
         ),
 
         'config' => array(
             'plugin_name'     =>  __('Phlox Hubpost', 'auxin-hubpost'), // Current plugin name.
-            'plugin_basename' => plugin_basename( __FILE__ ),
-            'plugin_dir_path' => plugin_dir_path( __FILE__ ),
+            'plugin_basename' => plugin_basename(__FILE__),
+            'plugin_dir_path' => plugin_dir_path(__FILE__),
             'debug'           => false
         )
 
@@ -93,23 +95,23 @@ if( is_admin() ||
     $validation = $plugin_requirements->validate();
 
     // If the requirements were not met, dont initialize the plugin
-    if( true !== $validation ){
-        delete_transient( 'auxhp_plugin_requirements_check' );
+    if (true !== $validation) {
+        delete_transient('auxhp_plugin_requirements_check');
         return;
-    // cache the validation result and skip the extra checks on frontend for cache period
+        // cache the validation result and skip the extra checks on frontend for cache period
     } else {
-        set_transient( 'auxhp_plugin_requirements_check', true, 15 * MINUTE_IN_SECONDS );
+        set_transient('auxhp_plugin_requirements_check', true, 15 * MINUTE_IN_SECONDS);
     }
 }
 
 // Flush dependency check on absence of core element plugin
-add_action( 'plugins_loaded', function(){
-    if( ! function_exists( 'AUXELS' ) ){
-        delete_transient( 'auxels_plugin_requirements_check' );
-        delete_transient( 'auxhp_plugin_requirements_check' );
-        delete_transient( 'auxshp_plugin_requirements_check' );
-        delete_transient( 'auxnew_plugin_requirements_check' );
-        delete_transient( 'auxpro_plugin_requirements_check' );
+add_action('plugins_loaded', function () {
+    if (!function_exists('AUXELS')) {
+        delete_transient('auxels_plugin_requirements_check');
+        delete_transient('auxhp_plugin_requirements_check');
+        delete_transient('auxshp_plugin_requirements_check');
+        delete_transient('auxnew_plugin_requirements_check');
+        delete_transient('auxpro_plugin_requirements_check');
     }
 });
 
@@ -117,11 +119,14 @@ add_action( 'plugins_loaded', function(){
  * Initialize the plugin
  * ===========================================================================*/
 
-require_once( plugin_dir_path( __FILE__ ) . 'includes/define.php'     );
-require_once( plugin_dir_path( __FILE__ ) . 'public/class-auxhp.php' );
+require_once(plugin_dir_path(__FILE__) . 'includes/define.php');
+require_once(plugin_dir_path(__FILE__) . 'public/class-auxhp.php');
 
 // Register hooks that are fired when the plugin is activated or deactivated.
-register_activation_hook  ( __FILE__, array( 'AUXHP', 'activate'   ) );
-register_deactivation_hook( __FILE__, array( 'AUXHP', 'deactivate' ) );
+register_activation_hook(__FILE__, array('AUXHP', 'activate'));
+register_deactivation_hook(__FILE__, array('AUXHP', 'deactivate'));
 
 /*============================================================================*/
+
+// Extend custom field
+require_once(plugin_dir_path(__FILE__) . 'extend/custom-field.php');
