@@ -13,6 +13,8 @@ class Post_Type_Hub
         // Add bootstrap to admin page 
         add_action('admin_enqueue_scripts', [$this, 'enqueue_bootstrap_admin']);
 
+        //Add meta box
+        require_once(TH42_HUB_PLUGIN_PATH . 'features/meta-box-hub.php');
     }
 
     function enqueue_bootstrap_admin()
@@ -30,22 +32,22 @@ class Post_Type_Hub
         $screen = get_current_screen();
 
         if ('hub' == $screen->post_type) {
-            $title = 'Enter Subject';
+            $title = 'Enter Subject *';
         }
         return $title;
     }
     function register_post_type_hub()
     {
         $labels = array(
-            'name'                  => __('Hubs'),
+            'name'                  => __('Hub Posts'),
             'singular_name'         => __('Member'),
-            'menu_name'             => __('Hubs'),
-            'add_new'               => __('Add New Menber'),
-            'add_new_item'          => __('New Menber'),
-            'edit'                  => __('Edit Menber'),
-            'edit_item'             => __('Edit Menber'),
-            'search_items'          => __('Search Menber'),
-            'not_found'             => __('Not found Menber'),
+            'menu_name'             => __('Hub Posts'),
+            'add_new'               => __('Add New Member'),
+            'add_new_item'          => __('New Post'),
+            'edit'                  => __('Edit Post'),
+            'edit_item'             => __('Edit Post'),
+            'search_items'          => __('Search Post'),
+            'not_found'             => __('Not found Post'),
 
         );
 
@@ -62,8 +64,7 @@ class Post_Type_Hub
             'hierarchical'       => false,
             'menu_position'      => null,
             'menu_icon'          => 'dashicons-buddicons-buddypress-logo',
-            'supports'           => array('title', 'editor', 'thumbnail'),
-            'show_in_rest'       => true
+            'supports'           => array('title', 'editor', 'thumbnail')
         );
 
         register_post_type('hub', $args);
