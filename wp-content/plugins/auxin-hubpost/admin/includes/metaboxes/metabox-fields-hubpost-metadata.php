@@ -92,35 +92,35 @@ function auxhp_metabox_fields_hubpost_metadata(){
                 ),
                 'right'   => array(
                     'label' => __('Info on Right', 'auxin-hubpost'),
-                    'image' => AUXIN_URL . 'images/visual-select/hubpost-single-classic.svg'
+                    'image' => AUXIN_URL . 'images/visual-select/portfolio-single-classic.svg'
                 ),
                 'left'   => array(
                     'label' => __('Info on Left', 'auxin-hubpost'),
-                    'image' => AUXIN_URL . 'images/visual-select/hubpost-single-classic-left-algin.svg'
+                    'image' => AUXIN_URL . 'images/visual-select/portfolio-single-classic-left-algin.svg'
                 ),
                 'top'   => array(
                     'label' => __('Info on Top', 'auxin-hubpost'),
-                    'image' => AUXIN_URL . 'images/visual-select/hubpost-single-info-on-top.svg'
+                    'image' => AUXIN_URL . 'images/visual-select/portfolio-single-info-on-top.svg'
                 ),
                 'top-reverse'   => array(
                     'label' => __('Info on Top - Direction reverse', 'auxin-hubpost'),
-                    'image' => AUXIN_URL . 'images/visual-select/hubpost-single-info-on-top-direction-reverse.svg'
+                    'image' => AUXIN_URL . 'images/visual-select/portfolio-single-info-on-top-direction-reverse.svg'
                 ),
                 'top-down'   => array(
                     'label' => __('Info on Top - Metadata Below', 'auxin-hubpost'),
-                    'image' => AUXIN_URL . 'images/visual-select/hubpost-single-info-on-top-metadata-on-blow.svg'
+                    'image' => AUXIN_URL . 'images/visual-select/portfolio-single-info-on-top-metadata-on-blow.svg'
                 ),
                 'bottom'   => array(
                     'label' => __('Info on Bottom', 'auxin-hubpost'),
-                    'image' => AUXIN_URL . 'images/visual-select/hubpost-single-wide.svg'
+                    'image' => AUXIN_URL . 'images/visual-select/portfolio-single-wide.svg'
                 ),
                 'bottom-reverse'   => array(
                     'label' => __('Info on Bottom - Direction reverse', 'auxin-hubpost'),
-                    'image' => AUXIN_URL . 'images/visual-select/hubpost-single-wide2.svg'
+                    'image' => AUXIN_URL . 'images/visual-select/portfolio-single-wide2.svg'
                 ),
                 'bottom-down'   => array(
                     'label' => __('Info on Bottom - Metadata Below', 'auxin-hubpost'),
-                    'image' => AUXIN_URL . 'images/visual-select/hubpost-single-info-on-bottom-metadata-blow.svg'
+                    'image' => AUXIN_URL . 'images/visual-select/portfolio-single-info-on-bottom-metadata-blow.svg'
                 )
             )
         ),
