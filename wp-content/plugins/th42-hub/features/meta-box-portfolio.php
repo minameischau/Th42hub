@@ -1,31 +1,30 @@
 <?php
-
-class MetaBoxHub extends Post_Type_Hub
+class MetaBoxHub extends Custom_Post_Type_Portfolio
 {
     function __construct()
     {
-        add_action('add_meta_boxes', [$this, 'custom_hub_metabox']);
-        add_action('save_post', [$this, 'save_custom_hub_metabox'], 20);
+        add_action('add_meta_boxes', [$this, 'custom_portfolio_metabox']);
+        add_action('save_post', [$this, 'save_custom_portfolio_metabox'], 20);
     }
 
-    function custom_hub_metabox()
+    function custom_portfolio_metabox()
     {
         add_meta_box(
-            'custom_hub_metabox',
+            'custom_portfolio_metabox',
             'Infomation',
-            [$this, 'custom_hub_metabox_callback'],
-            'hub',
+            [$this, 'custom_portfolio_metabox_callback'],
+            $this->post_type,
             'normal',
             'high'
         );
     }
 
-    function custom_hub_metabox_callback()
+    function custom_portfolio_metabox_callback()
     {
-        require_once(TH42_HUB_PLUGIN_PATH . 'interface/metabox-hub-information-ui.php');
+        require_once(TH42_HUB_PLUGIN_PATH . 'interface/metabox-portfolio-information-ui.php');
     }
 
-    function save_custom_hub_metabox($post_id)
+    function save_custom_portfolio_metabox($post_id)
     {
         if (isset($_POST['name']) && $_POST['name'] != "") {
             update_post_meta($post_id, '_name', $_POST['name']);

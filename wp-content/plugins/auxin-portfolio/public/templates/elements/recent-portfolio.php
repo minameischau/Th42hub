@@ -245,7 +245,7 @@ function auxin_recent_portfolio( $args= array() ) {
     }
 
     $query_arg = array(
-        'post_type'             => 'hubs',
+        'post_type'             => 'portfolio',
         'orderby'               => $order_by,
         'order'                 => $order,
         'offset'                => $offset,

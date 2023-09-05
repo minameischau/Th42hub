@@ -17,4 +17,4 @@ if (!defined('TH42_HUB_PLUGIN_URL')) {
     define('TH42_HUB_PLUGIN_URL', plugin_dir_url(__FILE__));
 }
 
-require_once TH42_HUB_PLUGIN_PATH . 'features/post-type-hub.php';
+require_once TH42_HUB_PLUGIN_PATH . 'features/custom-post-type-portfolio.php';
