@@ -21,7 +21,6 @@ class Custom_Field_Portfolio
                 $options[$k]['choices']['custom_meta_website'] = 'Website';
 
                 $options[$k]['default'] = '[{"id":"custom_meta_name", "label":"Name", "value":"Name"},{"id":"custom_meta_major", "label":"Major", "value":"Major"},{"id":"custom_meta_phone", "label":"Phone", "value":"Phone"},{"id":"custom_meta_website", "label":"Website", "value":"Website"}]';
-                echo_print_r($options[$k]);
 
                 break;
             }
