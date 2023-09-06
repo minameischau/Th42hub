@@ -17,7 +17,7 @@ if (!function_exists('phlox_child_enqueue_styles2')) {
         wp_enqueue_style('phlox-child-style', get_stylesheet_directory_uri() . '/style.css', array('phlox-style'), $theme->get('Version'));
     }
 }
-add_action('wp_enqueue_scripts', 'phlox_child_enqueue_styles2', 11);
+add_action('wp_enqueue_scripts', 'phlox_child_enqueue_styles2', 40);
 
 if (!defined('PHLOX_CHILD_DIR')) {
     define('PHLOX_CHILD_DIR', get_stylesheet_directory());
@@ -43,7 +43,10 @@ new Add_Google_Fonts();
 require_once PHLOX_CHILD_DIR . '/classes/class-add-bootstrap.php';
 new Add_Bootstrap();
 
-
-// Add bootstrap
+// Custom_Field_Portfolio
 require_once PHLOX_CHILD_DIR . '/classes/class-add-custom-field-portfolio.php';
 new Custom_Field_Portfolio();
+
+// Custom_Image_Size_Single_Portfolio
+require_once PHLOX_CHILD_DIR . '/classes/class-add-custom-image-size-single-portfolio.php';
+new Custom_Image_Size_Single_Portfolio();

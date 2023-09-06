@@ -20,3 +20,7 @@ html,
 body {
     font-family: 'Be Vietnam Pro', sans-serif;
 }
+
+.type-portfolio .entry-media img {
+    width: auto;
+}
