@@ -24,3 +24,7 @@ body {
 .type-portfolio .entry-media img {
     width: auto;
 }
+
+.aux-elementor-header.aux-sticky .aux-wrapper{
+    border-bottom: none;
+}
