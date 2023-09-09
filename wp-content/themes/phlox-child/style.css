@@ -22,9 +22,23 @@ body {
 }
 
 .type-portfolio .entry-media img {
-    width: auto;
+    /* width: auto; */
+}
+
+.type-portfolio.aux-side-right .entry-meta-data {
+    padding-left: 30px;
+    /* padding-bottom: 30px; */
 }
 
 .aux-elementor-header.aux-sticky .aux-wrapper{
     border-bottom: none;
+}
+
+.pt-8 {
+    padding-top: 8rem !important;
+}
+
+.col-6 {
+    flex: 0 0 auto;
+    width: 50% !important;
 }

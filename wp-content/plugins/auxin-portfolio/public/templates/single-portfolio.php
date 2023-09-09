@@ -20,7 +20,7 @@ get_header(); ?>
             <div class="aux-container aux-fold">
 
                 <div id="primary" class="aux-primary" >
-                    <div class="content" role="main"  >
+                    <div class="content container" role="main"  >
 <?php
                         if ( have_posts() && ! $is_pass_protected ) :
 

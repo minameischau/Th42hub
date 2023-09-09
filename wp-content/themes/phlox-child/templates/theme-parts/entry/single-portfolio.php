@@ -3,23 +3,25 @@ global $post;
 
 $post_vars = auxpfo_get_portfolio_config($post, array(
     'request_from' => 'single',
-    'media_size'   => auxin_get_option('portfolio_single_image_size', '[200,200]'),
+    'media_size'   => auxin_get_option('portfolio_single_image_size', ''),
 ));
 
-echo_print_r(auxin_get_option('portfolio_single_image_size', '[200,200]'));
+// echo_print_r('auxin_get_option(, [200,200])');
 extract($post_vars);
+// var_dump(extract($post_vars));
 
+$post_class .= ' row pe-0';
+
+// echo_print_r($post_class);
+// var_dump($the_content);
 ?>
 
-<h1><?= get_the_title() ?></h1>
+<h1 class="pt-8"><?= get_the_title() ?></h1>
 <article id="post-<?php the_ID(); ?>" <?php post_class($post_class); ?> role="article">
     <?php
-    $entry_main = '<div class="entry-main">';
+    $entry_main = '<div class="entry-main col-6">';
     if ($has_attach) {
-        $entry_main .= '<div class="entry-media ' . $media_parent_class  . '">' . $the_media . '</div>';
-    }
-    if ($the_content = auxin_get_the_content()) {
-        $entry_main .= '<div class="entry-content clearfix">' . $the_content . '</div>';
+        $entry_main .= '<div class="entry-media m-auto shadow rounded-4 overflow-hidden' . $media_parent_class  . '" style="width:420px;">' . $the_media . '</div>';
     }
     $entry_main .= '</div>';
 
@@ -75,6 +77,9 @@ extract($post_vars);
 
         // print the portfolio metadata
         $metafields = json_decode(auxin_get_option('portfolio_metadata_list_1'), true);
+        // echo '<pre>';
+        // var_dump($metafields);
+        // echo '</pre>';
 
         if (is_array($metafields) && !empty($metafields)) {
             $display_metafields = true;
@@ -98,7 +103,7 @@ extract($post_vars);
     ?>
             <div class="entry-side aux-sticky-position <?php echo esc_attr($header_class); ?>" <?php echo $header_styles; ?> data-boundry-target=".content .portfolio.hentry" data-sticky-move-method="after" data-boundaries="true" data-use-transform="true" data-sticky-margin="<?php echo $sticky_header_height; ?>">
             <?php } else { ?>
-                <div class="entry-side <?php echo esc_attr($header_class); ?>" <?php echo $header_styles; ?>>
+                <div class="entry-side col-6 <?php echo esc_attr($header_class); ?>" <?php echo $header_styles; ?>>
                 <?php }
             if ($_overview_title = auxin_get_post_meta($post, '_overview_title', '')) {
                 echo '<div class="entry-side-title"><h1>' . do_shortcode($_overview_title) . '</h1></div>';
@@ -144,7 +149,7 @@ extract($post_vars);
 
                     foreach ($metafields as $metadata_info) {
                         if (!empty($metadata_info['id']) && $meta_value = auxin_get_post_meta($post, '_auxin_meta_' . $metadata_info['id'])) {
-                            echo "<dt>{$metadata_info['value']}</dt>";
+                            echo "<dt class='fs-3 fw-bold'>{$metadata_info['label']}</dt>";
                             echo "<dd>{$meta_value}</dd>";
                         }
                     }
@@ -163,6 +168,11 @@ extract($post_vars);
                     }
 
                     echo "</div>";
+                }
+                
+                if ($the_content = auxin_get_the_content()) {
+                    echo '<div class="entry-content col-12 mt-4 clearfix">' . $the_content . '</div>';
+                    
                 }
 
                 // print media on bottom if side position is top
@@ -213,6 +223,8 @@ extract($post_vars);
                     global $post_next_prev_navigation;
                     $post_next_prev_navigation = $next_prev_navigation;
                 }
+
+                
                             ?>
 
 </article> <!-- end article -->
